@@ -34,14 +34,15 @@ Route::get('add-to-cart/{id}', [HomeController::class, 'addToCart'])->name('add.
 Route::get('remove-cart/{id}', [HomeController::class, 'cartDestroy'])->name('cart.destroy');
 Route::get('/view-cart', [CartController::class, 'index'])->name('view_cart');
 
+Route::get('payment', [PaypalController::class, 'index'])->name('payment');
+Route::post('charge', [PaypalController::class, 'charge'])->name('charge');
+Route::get('success', [PaypalController::class, 'success'])->name('success');
+Route::get('error', [PaypalController::class, 'error'])->name('error');
+
 Route::middleware('auth')->group(function () {
     Route::get('/user-dashboard',  [UserDashboardHomeController::class, 'index'])->name('user_dashboard');
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('stripe', [StripeController::class, 'postStripe'])->name('stripe_post');
-    Route::get('/paypal', [PaypalController::class, 'index'])->name('paypal');
-    Route::get('payment', [PayPalController::class, 'payment'])->name('payment');
-    Route::get('cancel', [PayPalController::class,'cancel'])->name('payment.cancel');
-    Route::get('payment/success', 'PayPalController@success')->name('payment.success');
 });
 
 Route::middleware('admin')->group(function () {

@@ -71,7 +71,7 @@ class PaypalController extends Controller
                 'transactionReference' => $request->input('paymentId'),
             ));
             $response = $transaction->send();
-            dd($response);
+//            dd($response);
 
             if ($response->isSuccessful())
             {

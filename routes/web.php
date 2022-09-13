@@ -12,6 +12,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\PaypalController;
+use App\Models\Sidebar;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +26,9 @@ use App\Http\Controllers\PaypalController;
 */
 
 // Route::get('/', function () {
+
+//     $data = Sidebar::with('child')->withCount('child')->having('child_count', '>', 0)->get();
+//     dd($data);
 //     return view('welcome');
 // });
 Route::post('/add_to_cart', [CartController::class, 'add_to_cart'])->name('add_to_cart');
